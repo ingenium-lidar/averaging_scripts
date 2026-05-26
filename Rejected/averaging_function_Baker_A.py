@@ -7,7 +7,7 @@ import numpy as np
 
 
 
-import_path = "/home/lidar/ingenium_cartographer/labtest5_pointcloud/labtest5.txt"  # file path of the pointcloud.txt file. User edits this manually. (Future optimization: make this file executable and pass this path a CLI parameter)
+import_path = "/home/lidar/Documents/Data/Testing Data/24-2024-07-03/2023-02-14-21-49-41_pointcloud - CUT.asc"  # file path of the pointcloud.txt file. User edits this manually. (Future optimization: make this file executable and pass this path a CLI parameter)
 export_path = import_path[:len(import_path)-4] + "AVG" + import_path[len(import_path)-4:] # export path is the same as the import path, but with "AVG" before the file extension. So, if the import path is "labtest5.txt", the export path is "labtest5AVG.txt". This is done by slicing the string at the last 4 characters (the ".txt") and inserting "AVG" before that.
 
 
@@ -19,6 +19,9 @@ def import_dataframe(full_path):
 
     # Convert the datato in a Pandas dataframe object.
     df = pd.DataFrame(csv)  
+
+    # Select only the first 3 columns (x, y, z) and discard any additional columns
+    df = df[list(range(3))]
 
     # Label the df columns. These can now be used in place of column indices.
     df.columns = ["x", "y", "z"] 

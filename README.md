@@ -5,7 +5,9 @@ A repository to hold all the team's averaging scripts already developed and unde
 
 ### averaging_function_Johannes: Isotropic 2.5D Voxel Grid Downsampling With Columnar Centroid Projection
 
-### averaging_function_Baker: Isotropic 3D Voxel Centroid Filtering
+### averaging_function_Baker_A: Isotropic 3D Voxel Centroid Filtering
+
+This was rejected because of extremely poor performance compared to averaging_function_Johannes.py.
 
 ### averaging_function_Humphrey: Adaptive Anisotropic Voxel-Based Point Cloud Smoothing via Local Density Gradient Weighting
 
