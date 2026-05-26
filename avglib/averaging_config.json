@@ -1,0 +1,6 @@
+{
+    "input_path": "/home/lidar/Documents/Data/Testing Data/24-2024-07-03/2023-02-14-21-49-41_pointcloud - CUT.asc",
+    "output_path": "/home/lidar/Documents/Data/Testing Data/24-2024-07-03/2023-02-14-21-49-41_pointcloud - CUT-AVGABB.asc",
+    "step": 0.03,
+    "columns_to_average": ["x", "y"]
+}

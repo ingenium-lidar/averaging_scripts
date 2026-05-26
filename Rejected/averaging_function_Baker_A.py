@@ -1,33 +1,27 @@
 ### CODE ###
 
+# Johannes' Algorithm, but voxeling accross x y and z instead of just x and y
 
 # Import pandas and numpy, standard scientific data analysis libraries
 import pandas as pd
 import numpy as np
+from avglib.acquire_df import load_df
+import json
+
+config_path = "avglib/averaging_config.json"
+
+with open(config_path, "r") as f:
+    config = json.load(f)
+
+df = load_df(config_path=config_path)
+print("DataFrame acquired.")
+import_path = config["input_path"]  # file path of the pointcloud.txt file. User edits this manually. (Future optimization: make this file executable and pass this path a CLI parameter)
+export_path = config["output_path"]  # export path is the same as the import path, but with "AVG" before the file extension. So, if the import path is "labtest5.txt", the export path is "labtest5AVG.txt". This is done by slicing the string at the last 4 characters (the ".txt") and inserting "AVG" before that.
+step = config["step"]
+columns_to_average = config["columns_to_average"]
 
 
 
-import_path = "/home/lidar/Documents/Data/Testing Data/24-2024-07-03/2023-02-14-21-49-41_pointcloud - CUT.asc"  # file path of the pointcloud.txt file. User edits this manually. (Future optimization: make this file executable and pass this path a CLI parameter)
-export_path = import_path[:len(import_path)-4] + "AVG" + import_path[len(import_path)-4:] # export path is the same as the import path, but with "AVG" before the file extension. So, if the import path is "labtest5.txt", the export path is "labtest5AVG.txt". This is done by slicing the string at the last 4 characters (the ".txt") and inserting "AVG" before that.
-
-
-
-def import_dataframe(full_path):
-
-    # Read the file at the path (an ASCII-format Stanford .ply) as a space-separated .csv. Specify that the file has no header row--it jumps straight into numbers
-    csv = pd.read_csv(full_path, sep=' ', header=None)
-
-    # Convert the datato in a Pandas dataframe object.
-    df = pd.DataFrame(csv)  
-
-    # Select only the first 3 columns (x, y, z) and discard any additional columns
-    df = df[list(range(3))]
-
-    # Label the df columns. These can now be used in place of column indices.
-    df.columns = ["x", "y", "z"] 
-
-    print("DataFrame acquired.")
-    return df
 
 
 
@@ -75,8 +69,7 @@ def get_avg(df, step, axes=[0,1,2]):
 # Average across all dimensions
 
 # Flatten the z axis
-df = import_dataframe(import_path)
-averaged_df = get_avg(df, 0.03, ["x", "y", "z"])
+averaged_df = get_avg(df, step, ["x", "y", "z"])
 # So now, over here, we call averaging across columns "x" and "y". Here's what the algorithm does:
 #    The algorithm divides the whole cloud into cubes with rounded_x, rounded_y, and rounded_z. The size of those cubes is determined by "step"--in this case, 0.3
 #    Now, the algorithm looks at the params and sees we picked "x" and "y". So, all the points which have similar xs and similar ys (as determined by the rounding algorithm) all get grouped together
