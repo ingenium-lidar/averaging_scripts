@@ -73,7 +73,7 @@ def get_avg(df, step, axes=[0,1,2]):
 
 # Flatten the z axis
 df = import_dataframe(import_path)
-averaged_df = get_avg(df, 0.03, ["x", "y"])
+averaged_df = get_avg(df, 0.03, ["x", "y", "z"])
 # So now, over here, we call averaging across columns "x" and "y". Here's what the algorithm does:
 #    The algorithm divides the whole cloud into cubes with rounded_x, rounded_y, and rounded_z. The size of those cubes is determined by "step"--in this case, 0.3
 #    Now, the algorithm looks at the params and sees we picked "x" and "y". So, all the points which have similar xs and similar ys (as determined by the rounding algorithm) all get grouped together
@@ -88,29 +88,3 @@ print("Program has finished running.")
 
 
 
-
-### NOTES ###
-
-__NOTES__ = """
-This file was copied off of averaging_function_Johannes.py by Abraham Baker 
-Date Created: Jan 25 2025
-Last Updated: May 26 2026
-Purpose: Increase clarity and readability of the original without altering fundamental functionality
-
-UPDATE LOG: WRITE BELOW HERE IF YOU ALTER THIS FILE
-
-1. Abraham Baker, Jan 25 2025
-    Created the file and added all the comments currently in it. 
-    Also added the __NOTES__ string 
-    modified get_avg to be more readable. For original see averaging_function_Johannes.py
-
-2. Abraham Baker, May 26 2026
-    Updated __NOTES__ string, clarified comments
-    modified get_avg to be more readable. For original see averaging_function_Johannes.py
-    moved some loose code into import_dataframe for organizational reasons
-    Added export_path variable to make it easier to change the export path. It is now automatically generated from the import path, so the user only has to change the import path.
-    Moved file to GitHub
-
-3. [Your name], [date]
-    [Brief summary of edits]
-"""
