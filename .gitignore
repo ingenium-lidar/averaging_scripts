@@ -1,0 +1,12 @@
+avglib/__pycache__/
+avglib/*.pyc
+avglib/*.pyo
+avglib/*.pyd
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.tmp
+*.bak
+*.swp
