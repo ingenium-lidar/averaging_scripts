@@ -12,7 +12,7 @@ df = load_df(config_path="avglib/averaging_config.json")
 print("DataFrame acquired.")
 
 
-def get_avg(df, step, axes=None, outlier_standard_deviations=3, supervoxel_size = 3):
+def get_avg(df, step, axes=None, outlier_standard_deviations=4, supervoxel_size = 2):
     print("Doing Johannes Things")
     cols = ["x", "y", "z"]
     axes = [cols.index(n) for n in axes] if axes else range(3)
@@ -39,7 +39,7 @@ def get_avg(df, step, axes=None, outlier_standard_deviations=3, supervoxel_size 
 # Average across all dimensions
 
 # Flatten the z axis
-averaged_df = get_avg(df, 0.03, ["x", "y"], outlier_standard_deviations=3)
+averaged_df = get_avg(df, 0.03, ["x", "y"], outlier_standard_deviations=2, supervoxel_size=3)
 print("Function Called.")
 np.savetxt('/home/lidar/Documents/Data/Testing Data/24-2024-07-03/2023-02-14-21-49-41_pointcloud - CUT-AVGABB.asc', averaged_df, delimiter=' ')
 print("Program has finished running.")
